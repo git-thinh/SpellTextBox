@@ -3,3 +3,11 @@
 ################################################################################
 
 /.vs/SpellTextBox/v14
+/SpellTextBox/obj/Debug
+/SpellTextBox/.vs/SpellTextBox/v14
+/SpellTextBoxTest/bin/Debug
+/SpellTextBoxTest/obj/Debug
+/SpellTextBox/NHunspell.dll
+/SpellTextBox/Hunspellx86.dll
+/SpellTextBox/Hunspellx64.dll
+*.user
