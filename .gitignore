@@ -11,3 +11,4 @@
 /SpellTextBox/Hunspellx86.dll
 /SpellTextBox/Hunspellx64.dll
 *.user
+/SpellTextBox/bin/Debug
