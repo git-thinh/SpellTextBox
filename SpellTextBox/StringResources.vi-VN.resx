@@ -138,6 +138,9 @@
   <data name="Paste" xml:space="preserve">
     <value>Dán</value>
   </data>
+  <data name="Redo" xml:space="preserve">
+    <value>Làm lại</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Chọn tất cả</value>
   </data>

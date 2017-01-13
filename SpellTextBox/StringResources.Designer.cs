@@ -61,7 +61,7 @@ namespace SpellTextBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (add to dictionary).
+        ///   Looks up a localized string similar to Add to Dictionary.
         /// </summary>
         internal static string AddCustom {
             get {
@@ -88,7 +88,25 @@ namespace SpellTextBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (no suggestions).
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore All.
+        /// </summary>
+        internal static string IgnoreAll {
+            get {
+                return ResourceManager.GetString("IgnoreAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (No suggestions).
         /// </summary>
         internal static string NoSuggestions {
             get {
@@ -102,6 +120,33 @@ namespace SpellTextBox {
         internal static string Paste {
             get {
                 return ResourceManager.GetString("Paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        internal static string Redo {
+            get {
+                return ResourceManager.GetString("Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        internal static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        internal static string Undo {
+            get {
+                return ResourceManager.GetString("Undo", resourceCulture);
             }
         }
     }

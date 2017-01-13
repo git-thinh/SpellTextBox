@@ -20,7 +20,7 @@ namespace SpellTextBox
 
 
             sizeChangedEventHandler = new SizeChangedEventHandler(
-                delegate 
+                delegate
                 {
                     SignalInvalidate();
                 });
@@ -32,7 +32,7 @@ namespace SpellTextBox
                 });
 
             scrollChangedEventHandler = new ScrollChangedEventHandler(
-                delegate 
+                delegate
                 {
                     SignalInvalidate();
                 });
@@ -76,7 +76,7 @@ namespace SpellTextBox
 
         Tuple<Word, Word> Split(Word word)
         {
-            
+
             int lineIndex = box.GetLineIndexFromCharacterIndex(word.Index);
             int lineStart = box.GetCharacterIndexFromLineIndex(lineIndex);
             int lineEnd = lineStart + box.GetLineLength(lineIndex);
@@ -103,6 +103,12 @@ namespace SpellTextBox
             {
                 foreach (var word in box.Checker.MisspelledWords)
                 {
+                    // skip ignored words
+                    if (box.Checker.IgnoredWords.Exists(x => x.Text == word.Text))
+                    {
+                        continue;
+                    }
+
                     List<Word> words = new List<Word>();
 
                     Word wordpart = word;

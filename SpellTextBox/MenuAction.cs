@@ -8,6 +8,8 @@ namespace SpellTextBox
         private string name;
         public string Name { get { return name; } set { name = value; OnPropertyChanged("Name"); } }
 
+        public string Tag { get; set; }
+
         private ICommand command;
         public ICommand Command { get { return command; } set { command = value; OnPropertyChanged("Command"); } }
 

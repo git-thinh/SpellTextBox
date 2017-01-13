@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System;
 using System.IO;
+using System.Windows.Controls;
 
 namespace SpellTextBox
 {
@@ -24,7 +25,7 @@ namespace SpellTextBox
 
         public SpellChecker(Hunspell HunSpell, SpellTextBox Parent)
         {
-            hunSpell = HunSpell; 
+            hunSpell = HunSpell;
             box = Parent;
             Words = new List<Word>();
             MisspelledWords = new ObservableCollection<Word>();
@@ -67,6 +68,7 @@ namespace SpellTextBox
                 List<MenuAction> commands = SuggestedWords.Select(w => new MenuAction()
                 {
                     Name = w.Text,
+                    Tag = "SpellingSuggestion",
                     Command = new DelegateCommand(
                         delegate
                         {
@@ -74,26 +76,22 @@ namespace SpellTextBox
                         })
                 }).ToList();
 
-                if (commands.Count == 0)
+                if (commands.Count > 0)
                 {
                     commands.Add(new MenuAction()
                     {
-                        Name = StringResources.Copy,
-                        Command = ApplicationCommands.Copy
+                        Name = "-"
                     });
                     commands.Add(new MenuAction()
                     {
-                        Name = StringResources.Cut,
-                        Command = ApplicationCommands.Cut
+                        Name = StringResources.IgnoreAll,
+                        Command = new DelegateCommand(
+                            delegate
+                            {
+                                AddIgnoreWords(SelectedMisspelledWord);
+                                box.FireTextChangeEvent();
+                            })
                     });
-                    commands.Add(new MenuAction()
-                    {
-                        Name = StringResources.Paste,
-                        Command = ApplicationCommands.Paste
-                    });
-                }
-                else
-                {
                     commands.Add(new MenuAction()
                     {
                         Name = StringResources.AddCustom,
@@ -101,11 +99,58 @@ namespace SpellTextBox
                             delegate
                             {
                                 SaveToCustomDictionary(SelectedMisspelledWord);
-
                                 box.FireTextChangeEvent();
                             })
                     });
+                    commands.Add(new MenuAction()
+                    {
+                        Name = "-"
+                    });
                 }
+
+                commands.Add(new MenuAction()
+                {
+                    Name = StringResources.Undo,
+                    Command = ApplicationCommands.Undo
+                });
+                commands.Add(new MenuAction()
+                {
+                    Name = StringResources.Redo,
+                    Command = ApplicationCommands.Redo
+                });
+                commands.Add(new MenuAction()
+                {
+                    Name = "-"
+                });
+                commands.Add(new MenuAction()
+                {
+                    Name = StringResources.Cut,
+                    Command = ApplicationCommands.Cut
+                });
+                commands.Add(new MenuAction()
+                {
+                    Name = StringResources.Copy,
+                    Command = ApplicationCommands.Copy
+                });
+                commands.Add(new MenuAction()
+                {
+                    Name = StringResources.Paste,
+                    Command = ApplicationCommands.Paste
+                });
+                commands.Add(new MenuAction()
+                {
+                    Name = StringResources.Delete,
+                    Command = ApplicationCommands.Delete
+                });
+                commands.Add(new MenuAction()
+                {
+                    Name = "-"
+                });
+                commands.Add(new MenuAction()
+                {
+                    Name = StringResources.SelectAll,
+                    Command = ApplicationCommands.SelectAll
+                });
 
                 return new ObservableCollection<MenuAction>(commands);
             }
@@ -159,7 +204,7 @@ namespace SpellTextBox
             if (misspelledWord != null)
             {
                 SuggestedWords = new ObservableCollection<Word>(hunSpell.Suggest(misspelledWord.Text).Select(s => new Word(s, misspelledWord.Index)));
-                if (SuggestedWords.Count == 0) SuggestedWords = new ObservableCollection<Word> { new Word(StringResources.NoSuggestions, 0) };
+                //if (SuggestedWords.Count == 0) SuggestedWords = new ObservableCollection<Word> { new Word(StringResources.NoSuggestions, 0) };
             }
             else
             {
@@ -207,6 +252,10 @@ namespace SpellTextBox
 
         public void LoadCustomDictionary()
         {
+            if (!File.Exists(box.CustomDictionaryPath))
+            {
+                return;
+            }
             string[] strings = File.ReadAllLines(box.CustomDictionaryPath);
             foreach (var str in strings)
             {
@@ -218,6 +267,11 @@ namespace SpellTextBox
         {
             File.AppendAllText(box.CustomDictionaryPath, string.Format("{0}{1}", word.Text.ToLower(), Environment.NewLine));
             hunSpell.Add(word.Text);
+            IgnoredWords.Add(word);
+        }
+
+        public void AddIgnoreWords(Word word)
+        {
             IgnoredWords.Add(word);
         }
 

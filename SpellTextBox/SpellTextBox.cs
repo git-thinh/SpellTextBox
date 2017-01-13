@@ -56,7 +56,7 @@ namespace SpellTextBox
         private void textChangedTimer_Elapsed(object sender,
         System.Timers.ElapsedEventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(new System.Action(() => 
+            Application.Current.Dispatcher.Invoke(new System.Action(() =>
             {
                 Checker.CheckSpelling(Text);
                 RaiseSpellcheckCompletedEvent();
@@ -97,9 +97,19 @@ namespace SpellTextBox
             this.ContextMenu.Items.Clear();
             foreach (var item in Checker.MenuActions)
             {
+                if (item.Name == "-")
+                {
+                    this.ContextMenu.Items.Add(new Separator());
+                    continue;
+                }
                 var mi = new MenuItem();
                 mi.Header = item.Name;
                 mi.Command = item.Command;
+                if (!string.IsNullOrEmpty(item.Tag))
+                {
+                    mi.FontWeight = FontWeights.Bold;
+                }
+
                 this.ContextMenu.Items.Add(mi);
             }
         }
@@ -124,7 +134,7 @@ namespace SpellTextBox
 
         public string CustomDictionaryPath
         {
-            get { return (string)this.GetValue(CustomDictionaryPathProperty) ?? "custom.txt"; }
+            get { return (string)this.GetValue(CustomDictionaryPathProperty) ?? @"dict\custom.dic"; }
             set { this.SetValue(CustomDictionaryPathProperty, value); }
         }
 

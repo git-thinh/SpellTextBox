@@ -21,6 +21,7 @@ namespace SpellTextBoxTest
     {
         public MainWindow()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("vi-VN");
             InitializeComponent();
         }
     }
