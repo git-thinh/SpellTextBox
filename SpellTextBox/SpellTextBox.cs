@@ -122,7 +122,7 @@ namespace SpellTextBox
 
         public string DictionaryPath
         {
-            get { return (string)this.GetValue(DictionaryPathProperty); }
+            get { return (string)this.GetValue(DictionaryPathProperty) ?? @"dict\en_US"; }
             set { this.SetValue(DictionaryPathProperty, value); }
         }
 

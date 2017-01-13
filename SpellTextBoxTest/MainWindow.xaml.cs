@@ -23,6 +23,7 @@ namespace SpellTextBoxTest
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("vi-VN");
             InitializeComponent();
+            //this.myTextBox.DictionaryPath = "dict/vi_VN";
         }
     }
 }
