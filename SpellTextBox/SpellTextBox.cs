@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Timers;
+using SpellTextBox.Resources;
 
 namespace SpellTextBox
 {
@@ -43,7 +44,6 @@ namespace SpellTextBox
             textChangedTimer.AutoReset = false;
             textChangedTimerOnElapse = new ElapsedEventHandler(textChangedTimer_Elapsed);
             textChangedTimer.Elapsed += textChangedTimerOnElapse;
-
         }
 
         private static void TextPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)

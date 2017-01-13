@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System;
 using System.IO;
 using System.Windows.Controls;
+using SpellTextBox.Resources;
 
 namespace SpellTextBox
 {

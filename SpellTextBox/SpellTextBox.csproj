@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuAction.cs" />
-    <Compile Include="StringResources.Designer.cs">
+    <Compile Include="Resources\StringResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StringResources.resx</DependentUpon>
@@ -91,12 +91,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="StringResources.resx">
+    <EmbeddedResource Include="Resources\StringResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringResources.ru-RU.resx" />
-    <EmbeddedResource Include="StringResources.vi-VN.resx" />
+    <EmbeddedResource Include="Resources\StringResources.ru-RU.resx" />
+    <EmbeddedResource Include="Resources\StringResources.vi-VN.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
