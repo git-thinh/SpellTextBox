@@ -12,3 +12,7 @@
 /SpellTextBox/Hunspellx64.dll
 *.user
 /SpellTextBox/bin/Debug
+/SpellTextBox/bin/Release
+/SpellTextBox/obj/Release
+/SpellTextBoxTest/bin/Release
+/SpellTextBoxTest/obj/Release

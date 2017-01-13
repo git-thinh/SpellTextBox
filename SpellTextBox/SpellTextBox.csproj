@@ -66,6 +66,12 @@
     <Compile Include="Word.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dict\en_US.aff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="dict\en_US.dic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="dict\vi_VN.aff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
